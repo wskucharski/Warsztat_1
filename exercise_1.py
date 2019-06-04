@@ -1,25 +1,35 @@
-import random
+def  guessing_game():
 
-zgadniete = False
-zgadywana_liczba = random.randint(0, 100)
-print(zgadywana_liczba)
-while not zgadniete:
-    try:
-        liczba = int(input("Zgadnij liczbę: "))
-        liczba = int(liczba)
-        if liczba > zgadywana_liczba:
-            print("Za dużo!")
-        elif liczba < zgadywana_liczba:
-            print("Za mało!")
-        else:
-            print("Zgadłeś!")
-            # pierwszy sposób na zatrzymanie pętli
-            # break
+    import random
 
-            # sposób drugi:
-            zgadniete = True
+    print("Witaj w grze w zgadywanie liczb!")
 
-    except ValueError:
-        print("To nie jest liczba!")
+    guessed = False
+    guessed_number = random.randint(0, 100)
+    print(guessed_number)
+    while not guessed:
+        try:
+            number = int(input("Zgadnij liczbę z zakresu 0-100: "))
+            number = int(number)
+            if number > guessed_number:
+                print("Za dużo!")
+            elif number < guessed_number:
+                print("Za mało!")
+            else:
+                print("Zgadłeś!")
+                guessed = True
+                restart = input("Czy chcesz zagrać jeszcze raz? tak/nie")
+                if restart == 'tak':
+                    guessing_game()
+                else:
+                    exit()
 
-print("Liczba {} jest poprawna.".format(liczba))
+
+
+
+        except ValueError:
+            print("To nie jest liczba!")
+
+    print(f"Liczba {number} jest poprawna!")
+
+guessing_game()
